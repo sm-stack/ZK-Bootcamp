@@ -1,6 +1,6 @@
 /** @type import('hardhat/config').HardhatUserConfig */
-require("dotenv").config();
-
+require("dotenv").config({ path: './.env' });
+require("@nomicfoundation/hardhat-ethers");
 module.exports = {
   defaultNetwork: "goerli",
   networks: {
@@ -8,7 +8,7 @@ module.exports = {
     },
     goerli: {
       url: process.env.RPC_URL,
-      accounts: [process.env.PRIVATE_KEY]
+      accounts: [process.env.PRIVATE_KEY || '']
     }
   },
   solidity: {
@@ -21,9 +21,9 @@ module.exports = {
     }
   },
   paths: {
-    sources: "./lesson3",
-    tests: "./lesson3/test",
-    cache: "./lesson3/cache",
-    artifacts: "./lesson3/artifacts"
+    sources: "./contracts",
+    tests: "./scripts/test",
+    cache: "./cache",
+    artifacts: "./artifacts"
   },
 };
